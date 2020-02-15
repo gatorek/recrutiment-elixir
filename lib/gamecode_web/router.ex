@@ -23,6 +23,7 @@ defmodule GamecodeWeb.Router do
     pipe_through :api
 
     post "/trips", TripController, :add
+    get "/stats/weekly", StatController, :weekly
   end
 
   # Other scopes may use custom stacks.
