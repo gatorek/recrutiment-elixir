@@ -24,6 +24,7 @@ defmodule GamecodeWeb.Router do
 
     post "/trips", TripController, :add
     get "/stats/weekly", StatController, :weekly
+    get "/stats/monthly", StatController, :monthly
   end
 
   # Other scopes may use custom stacks.
