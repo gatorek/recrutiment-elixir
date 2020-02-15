@@ -10,7 +10,7 @@ defmodule GamecodeWeb.TripControllerTest do
     }
     conn = conn
       |> put_req_header("content-type", "application/json")
-      |> post "/api/trips", Poison.encode!(data)
+      |> post("/api/trips", Poison.encode!(data))
     assert json_response(conn, 200) == %{
       "status" => "ok"
     }
