@@ -1,67 +1,38 @@
 defmodule Gamecode.Database do
+  use GenServer
+  use Timex
   alias Gamecode.Track
 
-  def add_track(_track) do
-    :ok
+  def add_track(track) do
+    GenServer.cast(__MODULE__, {:put, track} )
   end
 
   def get_week do
-    [
-      %Track {
-        start_address: "Portowa",
-        destination_address: "Krowia",
-        distance: 2.7,
-        price: 22.2,
-        date: ~D/2020-02-14/
-      },
-      %Track {
-        start_address: "Żeromskiego",
-        destination_address: "Dziędzielewicza",
-        distance: 22.7,
-        price: 11.2,
-        date: ~D/2020-02-13/
-      }
-    ]
+    week_start = Date.utc_today |> Timex.beginning_of_week
+    GenServer.call(__MODULE__, :get)
+      |> Enum.filter(&(&1.date >= week_start))
   end
 
   def get_month do
-    [
-      %Track {
-        start_address: "Portowa",
-        destination_address: "Krowia",
-        distance: 2.7,
-        price: 12.2,
-        date: ~D/2020-02-14/
-      },
-      %Track {
-        start_address: "Żeromskiego",
-        destination_address: "Dziędzielewicza",
-        distance: 22.7,
-        price: 41.2,
-        date: ~D/2020-02-13/
-      },
-      %Track {
-        start_address: "Abecadła",
-        destination_address: "Bednarskiego",
-        distance: 1,
-        price: 7,
-        date: ~D/2020-02-02/
-      },
-      %Track {
-        start_address: "Czeczotki",
-        destination_address: "Dalii",
-        distance: 20,
-        price: 37.1,
-        date: ~D/2020-02-02/
-      },
-      %Track {
-        start_address: "Hoplitów",
-        destination_address: "Legionów",
-        distance: 44.4,
-        price: 51.2,
-        date: ~D/2020-02-01/
-      }
-    ]
+    month_start = Date.utc_today |> Timex.beginning_of_month
+    GenServer.call(__MODULE__, :get)
+      |> Enum.filter(&(&1.date >= month_start))
+  end
+
+  def start_link() do
+    GenServer.start_link(__MODULE__, [], name: __MODULE__)
+  end
+
+  def init(start) do
+    {:ok, start}
+  end
+
+  def handle_cast({:put, record}, state) do
+    {:noreply, [record | state]}
+  end
+
+  def handle_call(:get, _from, state) do
+    {:reply, state, state}
   end
 
 end
