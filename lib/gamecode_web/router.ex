@@ -19,6 +19,12 @@ defmodule GamecodeWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/api", GamecodeWeb do
+    pipe_through :api
+
+    post "/trips", TripController, :add
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", GamecodeWeb do
   #   pipe_through :api
