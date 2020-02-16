@@ -1,35 +1,35 @@
 defmodule GamecodeWeb.StatControllerTest do
   use GamecodeWeb.ConnCase
 
-  setup_all context do
+  setup_all _context do
     data = [
       %{
-        start_address: "Portowa",
-        destination_address: "Krowia",
+        start_address: "Świeradowska 47, Warszawa",
+        destination_address: "Plac Konesera 8, Warszawa", # distance 12.2
         price: 12.2,
         date: ~D/2020-02-14/
       },
       %{
-        start_address: "Żeromskiego",
-        destination_address: "Dziędzielewicza",
+        start_address: "Boryszewska 2, Wiązowna",
+        destination_address: "Frezji 17, Boryszew", # distance: 2.7
         price: 41.2,
         date: ~D/2020-02-13/
       },
       %{
-        start_address: "Abecadła",
-        destination_address: "Bednarskiego",
+        start_address: "Norwida 24, Otwock",
+        destination_address: "Mokra 2, Celestynów", # distance: 10.2
         price: 7,
         date: ~D/2020-02-02/
       },
       %{
-        start_address: "Czeczotki",
-        destination_address: "Dalii",
+        start_address: "Norwida 24, Otwock",
+        destination_address: "Mokra 2, Celestynów", # distance: 10.2
         price: 37.1,
         date: ~D/2020-02-02/
       },
       %{
-        start_address: "Hoplitów",
-        destination_address: "Legionów",
+        start_address: "Norwida 24, Otwock",
+        destination_address: "Mokra 2, Celestynów", # distance: 10.2
         price: 51.2,
         date: ~D/2020-02-01/
       }
@@ -46,39 +46,41 @@ defmodule GamecodeWeb.StatControllerTest do
 
   test "GET /api/stats/weekly", %{conn: conn} do
     expected = %{
-      "total_distance" => 84,
+      "total_distance" => 15.3,
       "total_price" => 53.4,
     }
 
     conn = conn
       |> get("/api/stats/weekly")
-    assert json_response(conn, 200) == expected
+    response = json_response(conn, 200)
+    assert response["total_price"] == 53.4
+    assert_in_delta response["total_distance"], 15.3, 2
   end
 
   test "GET /api/stats/monthly", %{conn: conn} do
     expected = [
       %{
         "day" => "2020-02-01",
-        "total_distance" => 42.0,
-        "avg_ride" => 42.0,
+        "total_distance" => 10.2,
+        "avg_ride" => 10.2,
         "avg_price" => 51.2
       },
       %{
         "day" => "2020-02-02",
-        "total_distance" => 2*42.0,
-        "avg_ride" => 42.0,
+        "total_distance" => 20.4,
+        "avg_ride" => 10.2,
         "avg_price" => 22.05
       },
       %{
         "day" => "2020-02-13",
-        "total_distance" => 42.0,
-        "avg_ride" => 42.0,
+        "total_distance" => 2.7,
+        "avg_ride" => 2.7,
         "avg_price" => 41.2
       },
       %{
         "day" => "2020-02-14",
-        "total_distance" => 42.0,
-        "avg_ride" => 42.0,
+        "total_distance" => 12.2,
+        "avg_ride" => 12.2,
         "avg_price" => 12.2
       },
     ]

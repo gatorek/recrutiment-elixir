@@ -21,3 +21,5 @@ config :logger, :console,
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
+
+config :gamecode, :google_api_key, "PUT YOUR GOOGLE API KEY HERE"

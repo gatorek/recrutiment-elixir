@@ -1,7 +1,7 @@
 defmodule GamecodeWeb.DistanceService do
 
-  @spec get(string, string) :: number
+  @spec get(String.t(), String.t()) :: number
   def get(origin, destination) do
-    42.0
+    GamecodeWeb.GoogleDistanceApiClient.get(origin, destination) / 1000 |> Float.round(1)
   end
 end

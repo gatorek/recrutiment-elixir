@@ -9,7 +9,7 @@ defmodule GamecodeWeb.WeekStatService do
         })
       )
       |> (&(%{
-        total_distance: Float.round(&1.total_distance, 2),
+        total_distance: Float.round(&1.total_distance, 1),
         total_price: Float.round(&1.total_price, 2)
       })).()
 
