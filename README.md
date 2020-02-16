@@ -17,3 +17,9 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
   * Docs: https://hexdocs.pm/phoenix
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
+
+# Google Api
+
+This service uses Google Distance Matrix API. 
+To get one, read: https://developers.google.com/maps/documentation/distance-matrix/get-api-key and follow the instructions.
+Next, edit `config/config.exs` and put your API key into `config :gamecode, :google_api_key` section.
