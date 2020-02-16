@@ -1,7 +1,7 @@
 defmodule GamecodeWeb.StatController do
   use GamecodeWeb, :controller
 
-  def weekly(conn, params) do
+  def weekly(conn, _params) do
     response = Gamecode.Database.get_week
       |> GamecodeWeb.WeekStatService.get
       |> Poison.encode!
@@ -10,7 +10,7 @@ defmodule GamecodeWeb.StatController do
       |> resp(200, response)
   end
 
-  def monthly(conn, params) do
+  def monthly(conn, _params) do
     response = Gamecode.Database.get_month
       |> GamecodeWeb.MonthStatService.get
       |> Poison.encode!
