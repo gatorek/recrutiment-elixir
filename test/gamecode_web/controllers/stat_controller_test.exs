@@ -7,13 +7,13 @@ defmodule GamecodeWeb.StatControllerTest do
         start_address: "Świeradowska 47, Warszawa",
         destination_address: "Plac Konesera 8, Warszawa", # distance 12.2
         price: 12.2,
-        date: ~D/2020-02-14/
+        date: ~D/2020-02-18/
       },
       %{
         start_address: "Boryszewska 2, Wiązowna",
         destination_address: "Frezji 17, Boryszew", # distance: 2.7
         price: 41.2,
-        date: ~D/2020-02-13/
+        date: ~D/2020-02-17/
       },
       %{
         start_address: "Norwida 24, Otwock",
@@ -72,13 +72,13 @@ defmodule GamecodeWeb.StatControllerTest do
         "avg_price" => 22.05
       },
       %{
-        "day" => "2020-02-13",
+        "day" => "2020-02-17",
         "total_distance" => 2.7,
         "avg_ride" => 2.7,
         "avg_price" => 41.2
       },
       %{
-        "day" => "2020-02-14",
+        "day" => "2020-02-18",
         "total_distance" => 12.2,
         "avg_ride" => 12.2,
         "avg_price" => 12.2
