@@ -21,7 +21,7 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 # Google Api
 
 This service uses Google Distance Matrix API. 
-To get one, read: https://developers.google.com/maps/documentation/distance-matrix/get-api-key and follow the instructions.
+To get the API key, read: https://developers.google.com/maps/documentation/distance-matrix/get-api-key and follow the instructions.
 Next, edit `config/config.exs` and put your API key into `config :gamecode, :google_api_key` section.
 
 # Websocket notification
@@ -29,3 +29,18 @@ Next, edit `config/config.exs` and put your API key into `config :gamecode, :goo
 To receive notification about new trips via websocket, you should connect to URL `ws://localhost:4000/ws/event/websocket` and subscribe to channel `event:updates`.
 
 You can look at example code in file: `assets/js/socket.js`.
+
+# TODO
+
+Important
+
+- [ ] store float data (distance, price) as decimal or integer instead of float. use div rather, than "/"
+- [ ] remove presentation layer from week and month stat services (rounding) - maybe move it to a separate service?
+- [ ] return data according to specs
+- [ ] improve testing - support current date in test data
+
+Not so important
+
+- [ ] use view to render json response (maybe?)
+- [ ] use separate service to send WS messages
+- [ ] remove home page (API only app)
