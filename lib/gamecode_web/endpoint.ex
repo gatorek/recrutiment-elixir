@@ -1,7 +1,7 @@
 defmodule GamecodeWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :gamecode
 
-  socket "/socket", GamecodeWeb.UserSocket
+  socket "/ws/events", GamecodeWeb.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #

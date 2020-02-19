@@ -10,7 +10,11 @@ defmodule GamecodeWeb.TripController do
       distance: GamecodeWeb.DistanceService.get(track.start_address, track.destination_address)
     }
     status = Gamecode.Database.add_track(track)
+    if (status == :ok) do
+      GamecodeWeb.Endpoint.broadcast "event:updates", "add", %{trip_added: track}
+    end
     response = %{status: status} |> Poison.encode!
+
     conn
       |> put_resp_header("content-type", "application/json")
       |> resp(200, response)

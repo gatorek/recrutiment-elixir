@@ -2,7 +2,7 @@ defmodule GamecodeWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", GamecodeWeb.RoomChannel
+  channel "event:*", GamecodeWeb.EventChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

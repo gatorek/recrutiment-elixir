@@ -23,3 +23,9 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 This service uses Google Distance Matrix API. 
 To get one, read: https://developers.google.com/maps/documentation/distance-matrix/get-api-key and follow the instructions.
 Next, edit `config/config.exs` and put your API key into `config :gamecode, :google_api_key` section.
+
+# Websocket notification
+
+To receive notification about new trips via websocket, you should connect to URL `ws://localhost:4000/ws/event/websocket` and subscribe to channel `event:updates`.
+
+You can look at example code in file: `assets/js/socket.js`.
