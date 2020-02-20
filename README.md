@@ -41,6 +41,6 @@ Important
 
 Not so important
 
-- [ ] use view to render json response (maybe?)
-- [ ] use separate service to send WS messages
-- [ ] remove home page (API only app)
+- [ ] ~~use view to render json response (maybe?)~~
+- [ ] ~~use separate service to send WS messages~~
+- [x] remove home page (API only app)

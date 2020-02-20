@@ -49,7 +49,7 @@ defmodule GamecodeWeb.StatControllerTest do
       |> get("/api/stats/weekly")
     response = json_response(conn, 200)
     assert response["total_price"] == "53.4PLN"
-    assert response["total_distance"] |> String.ends_with? "km"
+    assert response["total_distance"] |> String.ends_with?("km")
     assert_in_delta response["total_distance"]  |> String.trim_trailing("km") |> String.to_float , 15.3, 2
   end
 
