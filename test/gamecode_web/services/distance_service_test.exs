@@ -6,8 +6,8 @@ defmodule GamecodeWeb.DistanceServiceTest do
   end
 
   test "Service returns correct distance" do
-    assert_in_delta(GamecodeWeb.DistanceService.get("Warszawa", "Kraków"), 290, 30)
-    assert_in_delta(GamecodeWeb.DistanceService.get("Świeradowska 47, Warszawa", "Plac Konesera 8, Warszawa"), 12, 3)
+    assert_in_delta(GamecodeWeb.DistanceService.get("Warszawa", "Kraków"), 290000, 30000)
+    assert_in_delta(GamecodeWeb.DistanceService.get("Świeradowska 47, Warszawa", "Plac Konesera 8, Warszawa"), 12000, 3000)
 
   end
 end

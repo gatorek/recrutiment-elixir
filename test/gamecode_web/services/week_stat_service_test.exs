@@ -28,4 +28,20 @@ defmodule GamecodeWeb.WeekStatServiceTest do
     assert GamecodeWeb.WeekStatService.get(input) == expected
 
   end
+
+
+  test "month service rounds correctly" do
+    data = %{
+      total_distance: 25400,
+      total_price: 3340,
+    }
+
+    expected = %{
+      total_distance: 25.4,
+      total_price: 33.4,
+    }
+
+    assert GamecodeWeb.WeekStatService.round(data) == expected
+  end
+
 end

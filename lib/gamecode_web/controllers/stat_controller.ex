@@ -4,6 +4,7 @@ defmodule GamecodeWeb.StatController do
   def weekly(conn, _params) do
     response = Gamecode.Database.get_week
       |> GamecodeWeb.WeekStatService.get
+      |> GamecodeWeb.WeekStatService.round
       |> Poison.encode!
     conn
       |> put_resp_header("content-type", "application/json")
@@ -13,6 +14,7 @@ defmodule GamecodeWeb.StatController do
   def monthly(conn, _params) do
     response = Gamecode.Database.get_month
       |> GamecodeWeb.MonthStatService.get
+      |> GamecodeWeb.MonthStatService.round
       |> Poison.encode!
     conn
       |> put_resp_header("content-type", "application/json")

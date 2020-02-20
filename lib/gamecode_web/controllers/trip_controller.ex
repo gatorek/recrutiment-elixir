@@ -6,6 +6,7 @@ defmodule GamecodeWeb.TripController do
     atom_params = Map.new(params, fn{k,v} -> {String.to_atom(k), v} end )
     track = struct(Track, atom_params)
     track = %{track |
+      price: track.price * 100 |> trunc,
       date: Date.from_iso8601!(track.date),
       distance: GamecodeWeb.DistanceService.get(track.start_address, track.destination_address)
     }

@@ -27,8 +27,18 @@ defmodule GamecodeWeb.MonthStatService do
         %{
           day: &1.day,
           total_distance: &1.total_distance,
-          avg_ride: &1.total_distance / &1.count,
-          avg_price: &1.total_price / &1.count
+          avg_ride: div(&1.total_distance, &1.count),
+          avg_price: div(&1.total_price, &1.count)
+        }
+      ))
+  end
+
+  def round data do
+    data |> Enum.map(&(
+        %{&1 |
+          total_distance: Float.round(&1.total_distance / 1000, 1),
+          avg_ride: Float.round(&1.avg_ride / 1000, 1),
+          avg_price: Float.round(&1.avg_price / 100, 2),
         }
       ))
   end

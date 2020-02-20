@@ -45,11 +45,6 @@ defmodule GamecodeWeb.StatControllerTest do
   end
 
   test "GET /api/stats/weekly", %{conn: conn} do
-    expected = %{
-      "total_distance" => 15.3,
-      "total_price" => 53.4,
-    }
-
     conn = conn
       |> get("/api/stats/weekly")
     response = json_response(conn, 200)
