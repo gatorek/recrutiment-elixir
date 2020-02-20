@@ -16,4 +16,12 @@ defmodule GamecodeWeb.WeekStatService do
       total_price: data.total_price / 100 |> Float.round(2)
     }
   end
+
+  def format data do
+    %{
+      total_distance: (data.total_distance |> to_string) <> "km",
+      total_price: (data.total_price |> to_string) <> "PLN"
+    }
+  end
+
 end

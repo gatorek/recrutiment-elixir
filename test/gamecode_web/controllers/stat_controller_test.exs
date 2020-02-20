@@ -48,35 +48,36 @@ defmodule GamecodeWeb.StatControllerTest do
     conn = conn
       |> get("/api/stats/weekly")
     response = json_response(conn, 200)
-    assert response["total_price"] == 53.4
-    assert_in_delta response["total_distance"], 15.3, 2
+    assert response["total_price"] == "53.4PLN"
+    assert response["total_distance"] |> String.ends_with? "km"
+    assert_in_delta response["total_distance"]  |> String.trim_trailing("km") |> String.to_float , 15.3, 2
   end
 
   test "GET /api/stats/monthly", %{conn: conn} do
     expected = [
       %{
-        "day" => "2020-02-01",
-        "total_distance" => 10.2,
-        "avg_ride" => 10.2,
-        "avg_price" => 51.2
+        "day" => "Feb  1",
+        "total_distance" => "10.2km",
+        "avg_ride" => "10.2km",
+        "avg_price" => "51.2PLN"
       },
       %{
-        "day" => "2020-02-02",
-        "total_distance" => 20.4,
-        "avg_ride" => 10.2,
-        "avg_price" => 22.05
+        "day" => "Feb  2",
+        "total_distance" => "20.4km",
+        "avg_ride" => "10.2km",
+        "avg_price" => "22.05PLN"
       },
       %{
-        "day" => "2020-02-17",
-        "total_distance" => 2.7,
-        "avg_ride" => 2.7,
-        "avg_price" => 41.2
+        "day" => "Feb 17",
+        "total_distance" => "2.7km",
+        "avg_ride" => "2.7km",
+        "avg_price" => "41.2PLN"
       },
       %{
-        "day" => "2020-02-18",
-        "total_distance" => 12.2,
-        "avg_ride" => 12.2,
-        "avg_price" => 12.2
+        "day" => "Feb 18",
+        "total_distance" => "12.2km",
+        "avg_ride" => "12.2km",
+        "avg_price" => "12.2PLN"
       },
     ]
 

@@ -36,7 +36,7 @@ Important
 
 - [x] store float data (distance, price) as decimal or integer instead of float. use div rather, than "/"
 - [x] remove presentation layer from week and month stat services (rounding) - maybe move it to a separate service?
-- [ ] return data according to specs
+- [x] return data according to specs
 - [ ] improve testing - support current date in test data
 
 Not so important

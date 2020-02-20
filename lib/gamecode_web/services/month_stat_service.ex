@@ -1,4 +1,5 @@
 defmodule GamecodeWeb.MonthStatService do
+  use Timex
 
   def get(data) do
     data
@@ -39,6 +40,17 @@ defmodule GamecodeWeb.MonthStatService do
           total_distance: Float.round(&1.total_distance / 1000, 1),
           avg_ride: Float.round(&1.avg_ride / 1000, 1),
           avg_price: Float.round(&1.avg_price / 100, 2),
+        }
+      ))
+  end
+
+  def format data do
+    data |> Enum.map(&(
+        %{
+          day: Timex.format!(&1.day, "%b %e", :strftime),
+          total_distance: to_string(&1.total_distance) <> "km",
+          avg_ride: to_string(&1.avg_ride) <> "km",
+          avg_price: to_string(&1.avg_price) <> "PLN",
         }
       ))
   end
